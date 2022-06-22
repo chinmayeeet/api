@@ -61,9 +61,9 @@ def api_index(url, asImage=True):
 
    
 
-@app.route('/', methods=['GET'])
-def index(url):
-    return "Hello World!"
+#@app.route('/', methods=['GET'])
+#def index(url):
+   # return "Hello World!"
     
 
 app.run(host='0.0.0.0', port=80, debug=True)
