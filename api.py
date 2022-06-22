@@ -1,7 +1,7 @@
 import json
 from pickle import TRUE
 from flask import Flask, send_file
-import code as code
+import functionpy as fu
 from PIL import Image
 import base64
 from io import BytesIO
@@ -30,7 +30,7 @@ def api_index(url, asImage=True):
             img = Image.open(BytesIO(decoded_img))
 
             file_name = file_name_for_base64_data + ".jpg"
-            out = code.chpers(file_name)
+            out = fu.chpers(file_name)
             img.save(out, "jpeg")
 
         # Base64 DATA
@@ -40,7 +40,7 @@ def api_index(url, asImage=True):
             img = Image.open(BytesIO(decoded_img))
 
             file_name = file_name_for_base64_data + ".png"
-            out = code.chpers(file_name)
+            out = fu.chpers(file_name)
             img.save(out, "png")
 
         # Regular URL Form DATA
@@ -48,7 +48,7 @@ def api_index(url, asImage=True):
             response = requests.get(url)
             img = Image.open(BytesIO(response.content)).convert("RGB")
             file_name = file_name_for_regular_data + ".jpg"
-            out = code.chpers(file_name)
+            out = fu.chpers(file_name)
             img.save(out, "jpeg")
         
     # ----- SECTION 3 -----    
@@ -63,7 +63,7 @@ def api_index(url, asImage=True):
 
 @app.route('/', methods=['GET'])
 def index(url):
-    out = code.chpers(url)
-    return(out)
+    return "Hello World!"
+    
 
 app.run(host='0.0.0.0', port=80, debug=True)
