@@ -54,7 +54,7 @@ def api_index(url, asImage=True):
                 shutil.copyfileobj(response.raw, f)  
 
             img = Image.open(file_path)
-            # out = fu.chpers(file_path, extension)
+            out = fu.chpers(file_path, extension)
             # img.save(out, file_path)
 
             url = base_url + file_name_for_regular_data + extension
@@ -70,7 +70,9 @@ def api_index(url, asImage=True):
     # ----- SECTION 3 -----    
         status = "Image has been succesfully sent to the server."
     except Exception as e:
-        status = "Error! = " + str(e)
+        result["url"] = ""
+        result["result"] = False
+        result["status"] = str(e)
 
     return json.dumps(result, indent = 4) 
 
