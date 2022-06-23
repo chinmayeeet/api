@@ -50,7 +50,7 @@ def api_index(url, asImage=True):
                 shutil.copyfileobj(response.raw, f)  
 
             img = Image.open(file_path)
-            out = fu.chpers(file_path)
+            out = fu.chpers(file_path, extension)
             img.save(out, file_path)
 
             url = base_url + file_name_for_regular_data + extension
