@@ -1,7 +1,6 @@
 import json
 from pickle import TRUE
 from flask import Flask, send_file
-from pyrsistent import T
 import functionpy as fu
 from PIL import Image
 import base64
