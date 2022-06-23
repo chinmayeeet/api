@@ -9,11 +9,11 @@ import requests
 app = Flask(__name__)
 
 @app.route('/')
-def index(url):
+def index():
    return "Hello World!"
 
 
-@app.route('/<path:url>', methods=['GET'])
+@app.route('/perspective/<path:url>', methods=['GET'])
 def api_index(url, asImage=True):
     # download the file from URL. Having unique name based on timestamp
     # run the file on cv and save the output
