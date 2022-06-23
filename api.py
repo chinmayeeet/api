@@ -7,6 +7,8 @@ import base64
 from io import BytesIO
 import requests
 app = Flask(__name__)
+import os, shutil
+import mimetypes
 
 @app.route('/')
 def index():
@@ -24,6 +26,8 @@ def api_index(url, asImage=True):
     #File naming process for directory form <file_name.jpg> data.
     #We are taken the last 8 characters from the url string.
     file_name_for_regular_data = url[-10:-4]
+
+    dir_path = os.path.join(os.getcwdb(), "downloads") 
     
     # ----- SECTION 2 -----
     try:
@@ -51,10 +55,17 @@ def api_index(url, asImage=True):
         # Regular URL Form DATA
         else:
             response = requests.get(url)
-            img = Image.open(BytesIO(response.content)).convert("RGB")
-            file_name = file_name_for_regular_data + ".jpg"
-            out = fu.chpers(file_name)
-            img.save(out, "jpeg")
+            if response.status_code == 200:
+                content_type = response.headers['content-type']
+                extension = mimetypes.guess_extension(content_type)
+                file_path = os.path.join(dir_path, file_name_for_regular_data, extension)
+                with open(file_path, 'wb') as f:
+                    response.raw.decode_content = True
+                    shutil.copyfileobj(response.raw, f)  
+
+                img = Image.open(file_path)
+                out = fu.chpers(file_path)
+                img.save(out, file_path)
         
     # ----- SECTION 3 -----    
         status = "Image has been succesfully sent to the server."
