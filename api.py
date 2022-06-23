@@ -58,7 +58,7 @@ def api_index(url, asImage=True):
             if response.status_code == 200:
                 content_type = response.headers['content-type']
                 extension = mimetypes.guess_extension(content_type)
-                file_path = os.path.join(dir_path, file_name_for_regular_data, extension)
+                file_path = os.path.join(dir_path, file_name_for_regular_data + extension)
                 with open(file_path, 'wb') as f:
                     response.raw.decode_content = True
                     shutil.copyfileobj(response.raw, f)  
