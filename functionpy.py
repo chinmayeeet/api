@@ -15,8 +15,11 @@ def read_transparent_png(filename):
     final_image = base 
     return final_image.astype(np.uint8)
 
-def chpers(filename):
- img = read_transparent_png(filename)
+def chpers(filename, ext):
+ if(ext == ".png"):
+   img = read_transparent_png(filename)
+ else:
+   img = cv2.imread(filename)
  imgc = img.copy()
  img1 = img.copy()
  out = img.copy()
