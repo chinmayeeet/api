@@ -16,7 +16,7 @@ def read_transparent_png(filename):
     return final_image.astype(np.uint8)
 
 def chpers(filename, ext):
- if(ext == ".png"):
+ if(ext == "png"):
    img = read_transparent_png(filename)
  else:
    img = cv2.imread(filename)
@@ -78,8 +78,9 @@ def chpers(filename, ext):
  print(rect, dst, maxWidth, maxHeight)
  out = cv2.warpPerspective(img, M, (  maxWidth, maxHeight))
  #cv2.imshow('final image', out)
+ out = cv2.cvtColor(out, cv2.COLOR_BGR2RGB)
  print("success")
- return(out)
+ return out
 
 
 
