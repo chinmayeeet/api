@@ -8,6 +8,10 @@ from io import BytesIO
 import requests
 app = Flask(__name__)
 
+@app.route('/')
+def index(url):
+   return "Hello World!"
+
 
 @app.route('/<path:url>', methods=['GET'])
 def api_index(url, asImage=True):
