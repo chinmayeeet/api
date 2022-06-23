@@ -1,6 +1,6 @@
 import json
 from pickle import TRUE
-from flask import Flask, send_file
+from flask import Flask, send_file, send_from_directory
 import functionpy as fu
 from PIL import Image
 import base64
@@ -9,6 +9,10 @@ import requests
 app = Flask(__name__)
 import os, shutil
 import mimetypes
+
+@app.route('/downloads/<path:path>')
+def send_report(path):
+    return send_from_directory('downloads', path)
 
 @app.route('/')
 def index():
