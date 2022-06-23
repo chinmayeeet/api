@@ -9,6 +9,7 @@ import requests
 app = Flask(__name__)
 import os, shutil
 import mimetypes
+import cv2
 
 @app.route('/downloads/<path:path>')
 def send_report(path):
@@ -54,8 +55,7 @@ def api_index(url, asImage=True):
                 shutil.copyfileobj(response.raw, f)  
 
             out = fu.chpers(file_path, extension)
-            img = Image.fromarray(out)
-            img.save(out, file_path)
+            cv2.imwrite(file_path, out)
 
             url = base_url + file_name_for_regular_data + extension
 
