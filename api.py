@@ -27,7 +27,7 @@ def api_index(url, asImage=True):
     #We are taken the last 8 characters from the url string.
     file_name_for_regular_data = url[-10:-4]
 
-    dir_path = os.path.join(os.getcwdb(), "downloads") 
+    dir_path = os.path.join(os.getcwdb().decode("utf-8"), "downloads") 
     
     # ----- SECTION 2 -----
     try:
