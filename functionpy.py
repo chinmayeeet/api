@@ -78,6 +78,7 @@ def chpers(filename, ext):
  print(rect, dst, maxWidth, maxHeight)
  out = cv2.warpPerspective(img, M, (  maxWidth, maxHeight))
  #cv2.imshow('final image', out)
+ print("success")
  return(out)
 
 
