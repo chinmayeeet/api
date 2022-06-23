@@ -1,6 +1,7 @@
 import json
 from pickle import TRUE
 from flask import Flask, send_file
+from pyrsistent import T
 import functionpy as fu
 from PIL import Image
 import base64
@@ -54,7 +55,7 @@ def api_index(url, asImage=True):
 
         # Regular URL Form DATA
         else:
-            response = requests.get(url)
+            response = requests.get(url, stream=True)
             if response.status_code == 200:
                 content_type = response.headers['content-type']
                 extension = mimetypes.guess_extension(content_type)
