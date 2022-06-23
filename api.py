@@ -34,8 +34,9 @@ def api_index(url, asImage=True):
             img = Image.open(BytesIO(decoded_img))
 
             file_name = file_name_for_base64_data + ".jpg"
-            out = fu.chpers(file_name)
-            img.save(out, "jpeg")
+            return(file_name)
+            #out = fu.chpers(file_name)
+            #img.save(out, "jpeg")
 
         # Base64 DATA
         elif "data:image/png;base64," in url:
