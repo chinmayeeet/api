@@ -56,7 +56,6 @@ def api_index(url, asImage=True):
     except Exception as e:
         status = "Error! = " + str(e)
 
-
     return status
 
    
